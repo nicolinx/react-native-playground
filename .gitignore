@@ -1,0 +1,57 @@
+# --- Projects Dependencies ---
+node_modules/
+.pnp
+.pnp.js
+
+# --- React Native / Expo ---
+.expo/
+dist/
+web-build/
+.pnpm-debug.log*
+
+# --- Android ---
+android/
+*.jks
+*.keystore
+*.exe
+*.bin
+*.apk
+*.aab
+
+# --- iOS ---
+ios/
+.bundle/
+vendor/bundle/
+*.plist
+*.cert
+*.endpoint
+*.mobileprovision
+*.xcworkspace
+xcuserdata/
+
+# --- Environment & Secrets ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# --- Debug & Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.lock-wscript
+
+# --- OS Files ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
