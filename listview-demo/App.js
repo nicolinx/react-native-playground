@@ -1,68 +1,58 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
-import { Icon } from "react-native-elements";
+// Import necessary libraries
+import React, { useState } from "react";
+// Import components from React Native
+import { StyleSheet, Text, View, Button } from "react-native";
+// Import AsyncStorage for local storage
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-class App extends Component {
-  state = {
-    data: [
-      "Data Structures",
-      "STL",
-      "C++",
-      "Java",
-      "Python",
-      "ReactJS",
-      "Angular",
-      "NodeJs",
-      "PHP",
-      "MongoDb",
-      "MySql",
-      "Android",
-      "iOS",
-      "Hadoop",
-      "Ajax",
-      "Ruby",
-      "Rails",
-      ".Net",
-      "Perl",
-    ],
+export default function App() {
+  const [data, setData] = useState("");
+
+  const add = async () => {
+    try {
+      await AsyncStorage.setItem("gfg", "GeeksForGeeks");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  renderItem = ({ item }) => (
-    <View style={styles.row}>
-      <Text style={styles.rowText}>{item}</Text>
-      <Icon name="eye" type="ionicon" color="#C2185B" />
+  const get = async () => {
+    try {
+      const value = AsyncStorage.getItem("gfg");
+      if (value != null) setData(value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Data: {data}</Text>
+      <View style={styles.button}>
+        <Button title={"add"} onPress={add} />
+      </View>
+
+      <View style={styles.button}>
+        <Button title={"get"} onPress={get} />
+      </View>
     </View>
   );
-
-  keyExtractor = (item, index) => index.toString();
-
-  render() {
-    return (
-      <View style={styles.screen}>
-        <FlatList
-          data={this.state.data}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
-        />
-      </View>
-    );
-  }
 }
 
+// Styles for the components
 const styles = StyleSheet.create({
-  screen: {
-    marginTop: 30,
-  },
-  row: {
-    margin: 15,
-    flexDirection: "row",
-    justifyContent: "space-between",
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
-    paddingHorizontal: 2,
+    justifyContent: "center",
   },
-  rowText: {
-    fontSize: 18,
+  text: {
+    fontSize: 40,
+    marginBottom: 30,
+  },
+  button: {
+    margin: 20,
+    width: 250,
   },
 });
-
-export default App;
