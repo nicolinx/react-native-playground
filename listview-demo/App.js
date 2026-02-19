@@ -1,47 +1,68 @@
-// import required libraries
-import React from "react";
-// import TouchableHighlight and other components from react-native
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Alert,
-} from "react-native";
+import React, { Component } from "react";
+import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Icon } from "react-native-elements";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <TouchableHighlight
-        style={styles.touchable}
-        onPress={() => {
-          Alert.alert("Touchable Highlight pressed.");
-        }}
-        activeOpacity={0.5}
-        underlayColor="#67c904"
-      >
-        <Text style={styles.text}>Click Me!</Text>
-      </TouchableHighlight>
+class App extends Component {
+  state = {
+    data: [
+      "Data Structures",
+      "STL",
+      "C++",
+      "Java",
+      "Python",
+      "ReactJS",
+      "Angular",
+      "NodeJs",
+      "PHP",
+      "MongoDb",
+      "MySql",
+      "Android",
+      "iOS",
+      "Hadoop",
+      "Ajax",
+      "Ruby",
+      "Rails",
+      ".Net",
+      "Perl",
+    ],
+  };
+
+  renderItem = ({ item }) => (
+    <View style={styles.row}>
+      <Text style={styles.rowText}>{item}</Text>
+      <Icon name="eye" type="ionicon" color="#C2185B" />
     </View>
   );
+
+  keyExtractor = (item, index) => index.toString();
+
+  render() {
+    return (
+      <View style={styles.screen}>
+        <FlatList
+          data={this.state.data}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderItem}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  screen: {
+    marginTop: 30,
   },
-  touchable: {
-    height: 50,
-    width: 200,
-    borderRadius: 10,
+  row: {
+    margin: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#4287f5",
+    paddingHorizontal: 2,
   },
-  text: {
-    color: "#fff",
+  rowText: {
+    fontSize: 18,
   },
 });
+
+export default App;
