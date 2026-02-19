@@ -1,45 +1,22 @@
-// Import necessary libraries
 import React, { useState } from "react";
-// Import components from React Native
+// Import StyleSheet, Text, View, and Button components from React Native
 import { StyleSheet, Text, View, Button } from "react-native";
-// Import AsyncStorage for local storage
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
-  const [data, setData] = useState("");
+  const [count, setCount] = useState(0);
 
-  const add = async () => {
-    try {
-      await AsyncStorage.setItem("gfg", "GeeksForGeeks");
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const get = async () => {
-    try {
-      const value = AsyncStorage.getItem("gfg");
-      if (value != null) setData(value);
-    } catch (e) {
-      console.log(e);
-    }
+  const changeCount = () => {
+    setCount(count + 1);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Data: {data}</Text>
-      <View style={styles.button}>
-        <Button title={"add"} onPress={add} />
-      </View>
-
-      <View style={styles.button}>
-        <Button title={"get"} onPress={get} />
-      </View>
+      <Text style={styles.text}>{count}</Text>
+      <Button title={"Click Me"} onPress={changeCount} />
     </View>
   );
 }
 
-// Styles for the components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -50,9 +27,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     marginBottom: 30,
-  },
-  button: {
-    margin: 20,
-    width: 250,
   },
 });
