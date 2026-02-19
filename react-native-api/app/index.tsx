@@ -1,0 +1,40 @@
+// Import React and useState hook from React library
+import React, { useState } from "react";
+import {
+  StyleSheet, // Import StyleSheet for styling
+  Text, // Import Text component for displaying text
+  View, // Import View component for layout
+  Switch, // Import Switch component for toggle functionality
+} from "react-native"; // Import components from react-native library
+
+export default function App() {
+  const [enable, setEnable] = useState(false);
+
+  const toggle = (state: boolean) => {
+    setEnable(state);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={{ color: enable ? "red" : "green" }}>
+        {/* Displayed text */}
+        GeeksforGeeks
+      </Text>
+      <Switch
+        trackColor={{ false: "#43f746", true: "#63dff2" }} // Set track color for the switch based on the state
+        thumbColor={enable ? "#faf68c" : "#e243f7"} // Set thumb color for the switch based on the state
+        onValueChange={toggle} // Call 'toggle' function when the switch value changes
+        value={enable} // Bind the switch value to the 'Enable' state
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    // Style for the main container
+    flex: 1, // Use full height of the screen
+    alignItems: "center", // Center align items horizontally
+    justifyContent: "center", // Center align items vertically
+  },
+});
