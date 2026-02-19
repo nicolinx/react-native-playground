@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-export default function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
+const GFG = (props) => {
   return (
     <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" color="blue" />
-      ) : (
-        <Text>Loaded!!!</Text>
-      )}
+      <Text style={styles.text}>Geeksforgeeks, {props.name}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
+    backgroundColor: "green",
     alignItems: "center",
   },
+  text: {
+    fontSize: 25,
+    backgroundColor: "white",
+    margin: 10,
+    borderRadius: 5,
+  },
 });
+
+export default function App() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <GFG name="John" />
+      <GFG name="Jane" />
+      <GFG name="Bob" />
+    </View>
+  );
+}
